@@ -18,7 +18,7 @@ var routes = Routes{
 	Route {
 		"Test",
 		"GET",
-		"/",
+		"/test",
 		handlers.Test,
 	},
 	Route {

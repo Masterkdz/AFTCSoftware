@@ -11,9 +11,9 @@ import (
 )
 
 
-func AddResult(db *sql.DB,) ([]string, error) {
+func TestAddResult(db *sql.DB,) ([]string, error) {
 	var result []string
-	db, error := sql.Open("mysql", "Root@/db.sql")
+	db, error := sql.Open("mysql", "Root@/dbAFTC.db3")
     checkErr(error)
 	if db == nil {
 		error := errors.New("db = nil ")
@@ -36,7 +36,7 @@ func AddResult(db *sql.DB,) ([]string, error) {
 
 func TestDispResult(db *sql.DB,) ([]string, error) {
 	var result []string
-	db, err := sql.Open("mysql", "Root@/db.sql")
+	db, err := sql.Open("mysql", "Root@/dbAFTC.db3")
     checkErr(error)
 	if db == nil {
 		err := errors.New("db = nil ")
@@ -58,6 +58,29 @@ func TestDispResult(db *sql.DB,) ([]string, error) {
         panic(err)
     }
     
+	db.Close()
+	return result, nil
+}
+
+func AddResult(db *sql.DB,) ([]string, error) {
+	var result []string
+	db, error := sql.Open("mysql", "Root@/dbAFTC.db3")
+    checkErr(error)
+	if db == nil {
+		error := errors.New("db = nil ")
+		return result, error
+	}
+	stmt, err := db.Prepare("INSERT INTO usagers(nom, prenom) VALUES(?,?)")
+    checkErr(err)
+
+    res, err := stmt.Exec("DEZORZI", "Kevin") //Remplacer les valeurs par les variables corresepondantes
+    checkErr(err)
+
+    id, err := res.LastInsertId()
+    checkErr(err)
+	if errorQuery != nil {
+		return result, errorQuery
+	}
 	db.Close()
 	return result, nil
 }
