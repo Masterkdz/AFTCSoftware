@@ -26,29 +26,22 @@ func main() {
 package main
 
 import (
-  "html/template"
+  "./handlers"
+ // "html/template"
   "log"
   "net/http"
-  "path"
+//  "path"
 )
 
 func main() {
   //fs := http.FileServer(http.Dir("template"))
   //http.Handle("./template/", http.StripPrefix("./template/", fs))
 
-  http.HandleFunc("/", serveTemplate)
+  http.HandleFunc("/", handlers.ServeTemplate)
+  cssHandler := http.FileServer(http.Dir("./template/style"))
+  http.Handle("./template/style", http.StripPrefix("./template/style", cssHandler))
 
   log.Println("Listening...")
   http.ListenAndServe(":8080", nil)
 }
 
-func serveTemplate(w http.ResponseWriter, r *http.Request) {
-  lp := path.Join("./template", "index.html")
-  //fp := path.Join("	./template", r.URL.Path)
-
-  tmpl, err := template.ParseFiles(lp)
-  if err != nil {
-  	log.Println(err)
-  }
-  tmpl.ExecuteTemplate(w, "index.html", nil)
-}
