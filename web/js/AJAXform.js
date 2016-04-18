@@ -1,10 +1,7 @@
 $(document).ready(function() {
     $('#form1').on('submit', function(e) {
-        e.preventDefault(); // J'empêche le comportement par défaut du navigateur, c-à-d de soumettre le formulaire
- 
-        var $this = $(this); // L'objet jQuery du formulaire
- 
-        // récupération des données
+        e.preventDefault(); 
+        var $this = $(this);
         var date = $('#date').val();
         var nomcontact = $('#nomcontact').val();
         var adresse= $('#adresse').val();
@@ -20,34 +17,43 @@ $(document).ready(function() {
         var problemes = $('#problemes').val();
         var attentes = $('#attentes').val();
         var observations = $('#observations').val();
-
-        //Seuls le nom du contact et l'auteur sont obligatoires, on met donc une valeur
-        //par défaut si les autres sont vide
         var default_val = 'Vide'
-        if(date==='')
+        if (date === '') {
             date = default_val
-        if(nomtc==='')
+        }
+        if (nomtc === '') {
             nomtc = default_val
-        if(adresse==='')
+        }
+        if (adresse === '') {
             adresse = default_val
-        if(tel==='')
+        }
+        if( tel === '') {
             tel = default_val
-        if(lien==='')
+        }
+        if (lien === '') {
             lien = default_val
-        if(circonstances==='')
+        }
+        if (circonstances === '') {
             circonstances = default_val
-        if(priseenchargemedicale==='')
+        }
+        if (priseenchargemedicale === '') {
             priseenchargemedicale = default_val
-        if(priseenchargesociale==='')
+        }
+        if (priseenchargesociale === '') {
             priseenchargesociale = default_val
-        if(demarches==='')
+        }
+        if (demarches === '') {
             demarches = default_val
-        if(problemes==='')
+        }
+        if (problemes === '') {
             problemes = default_val
-        if(attentes==='')
+        }
+        if (attentes === '') {
             attentes = default_val
-        if(observations==='')
+        }
+        if (observations === '') {
             observations = default_val
+        }
  
        //Test si champs obligatoires non remplis
         if(nomcontact === '' || auteurfiche === '') {
