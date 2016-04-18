@@ -16,15 +16,15 @@ type Routes []Route
 
 var routes = Routes{
 	Route {
-		"Test",
+		"ServeTemplate",
 		"GET",
-		"/test",
-		handlers.Test,
+		"/",
+		handlers.ServeTemplate,
 	},
-	Route {
-		"TestDB",
+		Route {
+		"ServeStyle",
 		"GET",
-		"/db",
-		handlers.Test,
+		"/style/style.css",
+		handlers.ServeStyle,
 	},
 }
