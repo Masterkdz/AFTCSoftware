@@ -39,4 +39,22 @@ var routes = Routes{
 		"/js/jquery1.12.3.js",
 		handlers.ServeJQuery,
 	},
+		Route {
+		"GetUser",
+		"POST",
+		"/user",
+		handlers.GetUser,
+	},
+		Route {
+		"AddUser",
+		"POST",
+		"/",
+		handlers.AddUser,
+	},
+		Route {
+		"DeleteUser",
+		"POST",
+		"/",
+		handlers.DeleteUser,
+	},
 }

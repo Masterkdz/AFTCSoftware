@@ -1,7 +1,6 @@
 package actions
 
 import (
-	"../../poller"
 	"database/sql"
 	"errors"
 	_ "github.com/lib/pq"
