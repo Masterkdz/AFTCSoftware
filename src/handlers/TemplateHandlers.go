@@ -20,28 +20,19 @@ func ServeTemplate(w http.ResponseWriter, r *http.Request) {
 
 func ServeStyle(w http.ResponseWriter, r *http.Request) {
   log.Print("I ask style")
-  lp := path.Join("../web/style/", "style.css")
-  tmpl, err := template.ParseFiles(lp)
-  if err != nil {
-    log.Println(err)
-  }
-  //style : template.NewCSS(lp)
-  error := tmpl.Execute(w, "")
-  if error != nil {
-    log.Println(error)
-  } 
+  w.Header().Set("Content-type", "text/css")
+  http.ServeFile(w, r, "../web/style/style.css")
 }
 
 func ServeJs(w http.ResponseWriter, r *http.Request) {
-  log.Print("I ask Js")
+  log.Print("I ask AjaxJs")
   lp := path.Join("../web/js/", "AJAXform.js")
-  tmpl, err := template.ParseFiles(lp)
-  if err != nil {
-    log.Println(err)
-  }
-  //style : template.NewCSS(lp)
-  error := tmpl.Execute(w, "")
-  if error != nil {
-    log.Println(error)
-  } 
+  w.Header().Set("Content-type", "application/javascript")
+  http.ServeFile(w, r, lp)
+}   
+
+func ServeJQuery(w http.ResponseWriter, r *http.Request) {
+  log.Print("I ask JQuery")
+  w.Header().Set("Content-type", "application/javascript")
+  http.ServeFile(w, r, "../web/js/jquery1.12.3.js")
 }   

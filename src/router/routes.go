@@ -33,4 +33,10 @@ var routes = Routes{
 		"/js/AJAXform.js",
 		handlers.ServeJs,
 	},
+		Route {
+		"ServeJs",
+		"GET",
+		"/js/jquery1.12.3.js",
+		handlers.ServeJQuery,
+	},
 }
