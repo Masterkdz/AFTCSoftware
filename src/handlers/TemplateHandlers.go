@@ -20,5 +20,5 @@ func ServeTemplate(w http.ResponseWriter, r *http.Request) {
 func ServeStyle(w http.ResponseWriter, r *http.Request) {
   lp := path.Join("./template/style/", "style.css")
   log.Print(lp)
-  http.Handle(lp, n)
+  http.FileServer(http.Dir(lp))
 }   
