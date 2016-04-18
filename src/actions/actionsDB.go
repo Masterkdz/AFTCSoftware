@@ -9,8 +9,31 @@ import (
     "fmt"
 )
 
+func AddUser(data modele.Formulaire) error {
+	db, error := sql.Open("mysql", "Root@/dbAFTC.db3")
+    if error == nil {
+    	log.Print(error)
+    }
+	if db == nil {
+		error := errors.New("db = nil ")
+		return result, error
+	}
+	stmt, err := db.Prepare("INSERT INTO usagers(nom, prenom, Auteur_fiche, Date, NomTCCL, telephone_fixe, Portable, CirconstancesTrauma, ConditionsPriseEnchargeMedicale, ConditionsPriseEnChargeSociale, DemarchesAdministrativesJuridiquesEffectuees, ProblemesRecontres, AttentesAFTC, Observations) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")
+    checkErr(err)
 
-func TestAddResult(db *sql.DB,) ([]string, error) {
+    res, err := stmt.Exec(data.nom, data.prenom, data.auteurFiche, data.date, data.nomTCCL, data.telephoneFixe, data.portable, data.circonstancesTrauma, data.conditionsPriseEnchargeMedicale, data.conditionsPriseEnChargeSociale, data.demarchesAdministrativesJuridiquesEffectuees, data.problemesRecontres, data.attentesAFTC, data.observations) //Remplacer les valeurs par les variables corresepondantes
+    checkErr(err)
+
+    id, err := res.LastInsertId()
+    checkErr(err)
+	if errorQuery != nil {
+		return result, errorQuery
+	}
+	db.Close()
+	return result, nil
+}
+
+/*func TestAddResult(db *sql.DB,) ([]string, error) {
 	var result []string
 	db, error := sql.Open("mysql", "Root@/dbAFTC.db3")
     checkErr(error)
@@ -31,9 +54,9 @@ func TestAddResult(db *sql.DB,) ([]string, error) {
 	}
 	db.Close()
 	return result, nil
-}
+}*/
 
-func TestDispResult(db *sql.DB,) ([]string, error) {
+/*func TestDispResult(db *sql.DB,) ([]string, error) {
 	var result []string
 	db, err := sql.Open("mysql", "Root@/dbAFTC.db3")
     checkErr(error)
@@ -59,32 +82,10 @@ func TestDispResult(db *sql.DB,) ([]string, error) {
     
 	db.Close()
 	return result, nil
-}
+}*/
 
-func AddResult(db *sql.DB,) ([]string, error) {
-	var result []string
-	db, error := sql.Open("mysql", "Root@/dbAFTC.db3")
-    checkErr(error)
-	if db == nil {
-		error := errors.New("db = nil ")
-		return result, error
-	}
-	stmt, err := db.Prepare("INSERT INTO usagers(nom, prenom, Auteur_fiche, Date, NomTCCL, telephone_fixe, Portable, CirconstancesTrauma, ConditionsPriseEnchargeMedicale, ConditionsPriseEnChargeSociale, DemarchesAdministrativesJuridiquesEffectuees, ProblemesRecontres, AttentesAFTC, Observations) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")
-    checkErr(err)
 
-    res, err := stmt.Exec("", "", "", "", "", "", "", "", "", "", "", "", "", "") //Remplacer les valeurs par les variables corresepondantes
-    checkErr(err)
-
-    id, err := res.LastInsertId()
-    checkErr(err)
-	if errorQuery != nil {
-		return result, errorQuery
-	}
-	db.Close()
-	return result, nil
-}
-
-func DisplayResult(db *sql.DB,) ([]string, error) {
+/*func DisplayResult(db *sql.DB,) ([]string, error) {
 	var result []string
 	db, err := sql.Open("mysql", "Root@/dbAFTC.db3")
     checkErr(error)
@@ -110,5 +111,5 @@ func DisplayResult(db *sql.DB,) ([]string, error) {
     
 	db.Close()
 	return result, nil
-}
+}*/
     
