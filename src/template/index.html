@@ -1,12 +1,83 @@
-<!doctype html>
-<html>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+            "http://www.w3.org/TR/html4/loose.dtd">		
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="style/main.css" />
-  <title>Logiciel de gestion AFTC Lorraine</title>
- <!-- <link rel="stylesheet" href="style/main.css"> -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Fiche de Renseignements</title>
+<link rel="stylesheet" type="text/css" href="style/css.css">
+ <script src="jquery1.12.3.js"></script>
+ <script src="style/AJAXform.js"></script>
 </head>
+
 <body>
-<h1>HELLO BIATCH</h1>
+<h3>Fiche de Renseignements</h3> 
+<br>
+
+<form id="form1" method="post" action="/post">
+    <p>
+        <label for="date">Date :</label>
+        <input type="text" name="date" id="date" size="30" maxlength="20" />
+    </p>
+    <p>
+        <label for="nomcontact">Nom du contact :</label>
+        <input type="text" name="nomcontact" id="nomcontact" size="30" maxlength="50" />
+    </p>	
+    <p>
+        <label for="nomtc">Nom de la personne TC :</label>
+        <input type="text" name="nomtc" id="nomtc" size="30" maxlength="50" />
+    </p>	
+    <p>
+        <label for="adresse">Adresse :</label>
+        <textarea name="adresse" id="message"></textarea>
+    </p>	
+    <p>
+        <label for="tel">Téléphone :</label>
+        <input type="text" name="tel" id="tel" size="30" maxlength="10" />
+    </p>	
+    <p>
+        <label for="fiche">Fiche remplie par :</label>
+        <input type="text" name="auteurfiche" id="auteurfiche" size="30" maxlength="50" />
+    </p>
+    <p>
+        <label for="lien">Lien :</label>
+        <input type="text" name="lien" id="lien" size="30" maxlength="30" />
+    </p>	
+ 
+ 
+ <br><br>
+ 
+
+	<p>
+        <label for="circonstances">Circonstances du TC :</label>
+        <textarea name="circonstances" id="message"></textarea>
+    </p>	
+	<p>
+        <label for="conditions">Conditions de prise en charge médicale :</label>
+		<textarea name="priseenchargemedicale" id="message"></textarea>
+    </p>	
+	<p>
+        <label for="conditionssociale">Conditions de prise en charge sociale :</label>
+		<textarea name="priseenchargesociale" id="message"></textarea>    </p>	
+	<p>
+        <label for="demarches">Démarches administratives/juridiques effectuées :</label>
+		<textarea name="demarches" id="message"></textarea>    </p>	    </p>	
+	<p>
+        <label for="problemes">Problèmes rencontrés :</label>
+		<textarea name="problemes" id="message"></textarea>    </p>	    </p>	
+	<p>
+        <label for="attentes">Attentes de l'AFTC :</label>
+		<textarea name="attentes" id="message"></textarea>    </p>	    </p>
+	<p>
+        <label for="observations">Observations :</label>
+		<textarea name="observations" id="message"></textarea>    </p>	    </p>
+<br><br>	
+    <div class="button">
+        <button type="submit">Cr&eacute;er nouvel usager</button>
+    </div>		
+</form>
+
+
+
 </body>
 </html>
