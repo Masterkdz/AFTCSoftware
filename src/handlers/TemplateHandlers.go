@@ -9,7 +9,8 @@ import (
 
 
 func ServeTemplate(w http.ResponseWriter, r *http.Request) {
-  lp := path.Join("./template", "index.html")
+  log.Print("I ask index")
+  lp := path.Join("../web", "index.html")
   tmpl, err := template.ParseFiles(lp)
   if err != nil {
   	log.Println(err)
@@ -18,7 +19,15 @@ func ServeTemplate(w http.ResponseWriter, r *http.Request) {
 }
 
 func ServeStyle(w http.ResponseWriter, r *http.Request) {
-  lp := path.Join("./template/style/", "style.css")
-  log.Print(lp)
-  http.FileServer(http.Dir(lp))
+  log.Print("I ask style")
+  lp := path.Join("../web/style/", "style.css")
+  tmpl, err := template.ParseFiles(lp)
+  if err != nil {
+    log.Println(err)
+  }
+  //style : template.NewCSS(lp)
+  error := tmpl.Execute(w, "")
+  if error != nil {
+    log.Println(error)
+  } 
 }   
