@@ -51,7 +51,7 @@ $(document).ready(function() {
  
        //Test si champs obligatoires non remplis
         if(nomcontact === '' || auteurfiche === '') {
-            alert('Il n\' y a pas de nom ni d\'auteur de la fiche, veuillez reneigner ces champs');
+            alert('Il n\' y a pas de nom ni d\'auteur de la fiche, veuillez renseigner ces champs');
         } else {
             // Envoi de la requête HTTP en mode asynchrone
             $.ajax({
