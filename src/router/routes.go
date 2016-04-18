@@ -27,4 +27,10 @@ var routes = Routes{
 		"/style/style.css",
 		handlers.ServeStyle,
 	},
+		Route {
+		"ServeJs",
+		"GET",
+		"/js/AJAXform.js",
+		handlers.ServeJs,
+	},
 }

@@ -30,4 +30,18 @@ func ServeStyle(w http.ResponseWriter, r *http.Request) {
   if error != nil {
     log.Println(error)
   } 
+}
+
+func ServeJs(w http.ResponseWriter, r *http.Request) {
+  log.Print("I ask Js")
+  lp := path.Join("../web/js/", "AJAXform.js")
+  tmpl, err := template.ParseFiles(lp)
+  if err != nil {
+    log.Println(err)
+  }
+  //style : template.NewCSS(lp)
+  error := tmpl.Execute(w, "")
+  if error != nil {
+    log.Println(error)
+  } 
 }   
