@@ -38,8 +38,7 @@ func main() {
   //http.Handle("./template/", http.StripPrefix("./template/", fs))
 
   http.HandleFunc("/", handlers.ServeTemplate)
-  cssHandler := http.FileServer(http.Dir("./template/style"))
-  http.Handle("./template/style", http.StripPrefix("./template/style", cssHandler))
+
 
   log.Println("Listening...")
   http.ListenAndServe(":8080", nil)
