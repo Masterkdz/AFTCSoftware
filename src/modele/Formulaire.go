@@ -1,19 +1,20 @@
 package modele
 
 type Formulaire struct {
-	date	string
-	nomcontact	string
-	adresse	string
-	nomcontact string
-	adresse	string
-	tel	string
-	auteurfiche	string
-	lien	string
-	circonstances	string
-	priseenchargemedicale	string
-	priseenchargesociale	string
-	demarches	string
-	problemes	string
-	attentes	string
-	observations	string
+	Nom 				string
+	Prenom				string
+	Date				string
+	NomTCCL				string
+	Adresse				string
+	Tel					string
+	Portable			string
+	AuteurFiche			string
+	Lien				string
+	CirconstancesTrauma		string
+	ConditionsPriseEnchargeMedicale	string
+	ConditionsPriseEnChargeSociale	string
+	DemarchesAdministrativesJuridiquesEffectuees			string
+	ProblemesRecontres			string
+	AttentesAFTC			string
+	Observations		string
 }

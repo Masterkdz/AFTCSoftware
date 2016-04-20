@@ -1,12 +1,12 @@
 package actions
 
 import (
+	"../modele"
 	"database/sql"
 	"errors"
 	_ "github.com/lib/pq"
 	"log"
 	_ "github.com/go-sql-driver/mysql"
-    "fmt"
 )
 
 func AddUser(data modele.Formulaire) error {
@@ -16,21 +16,15 @@ func AddUser(data modele.Formulaire) error {
     }
 	if db == nil {
 		error := errors.New("db = nil ")
-		return result, error
+		return error
 	}
-	stmt, err := db.Prepare("INSERT INTO usagers(nom, prenom, Auteur_fiche, Date, NomTCCL, telephone_fixe, Portable, CirconstancesTrauma, ConditionsPriseEnchargeMedicale, ConditionsPriseEnChargeSociale, DemarchesAdministrativesJuridiquesEffectuees, ProblemesRecontres, AttentesAFTC, Observations) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")
-    checkErr(err)
+	stmt, _ := db.Prepare("INSERT INTO usagers(nom, prenom, Auteur_fiche, Date, NomTCCL, telephone_fixe, Portable, CirconstancesTrauma, ConditionsPriseEnchargeMedicale, ConditionsPriseEnChargeSociale, DemarchesAdministrativesJuridiquesEffectuees, ProblemesRecontres, AttentesAFTC, Observations) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")
 
-    res, err := stmt.Exec(data.nom, data.prenom, data.auteurFiche, data.date, data.nomTCCL, data.telephoneFixe, data.portable, data.circonstancesTrauma, data.conditionsPriseEnchargeMedicale, data.conditionsPriseEnChargeSociale, data.demarchesAdministrativesJuridiquesEffectuees, data.problemesRecontres, data.attentesAFTC, data.observations) //Remplacer les valeurs par les variables corresepondantes
-    checkErr(err)
+    res, _ := stmt.Exec(data.Nom, data.Prenom, data.AuteurFiche, data.Date, data.NomTCCL, data.Tel, data.Portable, data.CirconstancesTrauma, data.ConditionsPriseEnchargeMedicale, data.ConditionsPriseEnChargeSociale, data.DemarchesAdministrativesJuridiquesEffectuees, data.ProblemesRecontres, data.AttentesAFTC, data.Observations) //Remplacer les valeurs par les variables corresepondantes
 
-    id, err := res.LastInsertId()
-    checkErr(err)
-	if errorQuery != nil {
-		return result, errorQuery
-	}
+    _, _ = res.LastInsertId()
 	db.Close()
-	return result, nil
+	return nil
 }
 
 /*func TestAddResult(db *sql.DB,) ([]string, error) {
