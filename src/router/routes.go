@@ -42,7 +42,7 @@ var routes = Routes{
 		Route {
 		"GetUser",
 		"POST",
-		"/user",
+		"/getuser",
 		handlers.GetUser,
 	},
 		Route {
@@ -54,7 +54,7 @@ var routes = Routes{
 		Route {
 		"DeleteUser",
 		"POST",
-		"/",
+		"/delete",
 		handlers.DeleteUser,
 	},
 }

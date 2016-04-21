@@ -1,7 +1,8 @@
 package handlers
 
 import (
-  "../actions"
+  //"../actions"
+  "../utils"
   "log"
   "net/http"
   "../modele"
@@ -15,16 +16,21 @@ func GetUser(w http.ResponseWriter, r *http.Request) {
 
 
 func AddUser(w http.ResponseWriter, r *http.Request) {
+  header := w.Header()
+  utils.SetCors(&header)
   decoder := json.NewDecoder(r.Body)
+  log.Print(decoder)
   data := modele.Formulaire{}
   error := decoder.Decode(&data)
   if error != nil {
     log.Print(error)
   }
-  errorAddUser := actions.AddUser(data)
+
+  log.Print(data)
+/*  errorAddUser := actions.AddUser(data)
   if errorAddUser != nil {
     log.Print(errorAddUser)
-  }
+  }*/
 }
 
 func DeleteUser(w http.ResponseWriter, r *http.Request) {
