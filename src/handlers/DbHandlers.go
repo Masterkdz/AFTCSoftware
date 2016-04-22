@@ -20,13 +20,13 @@ func AddUser(w http.ResponseWriter, r *http.Request) {
   utils.SetCors(&header)
   decoder := json.NewDecoder(r.Body)
   log.Print(decoder)
-  data := modele.Formulaire{}
-  error := decoder.Decode(&data)
+  var dat modele.Formulaire
+  error := decoder.Decode(&dat)
   if error != nil {
-    log.Print(error)
+    log.Print("erreor decode ", error)
   }
 
-  log.Print(data)
+  log.Print(dat)
 /*  errorAddUser := actions.AddUser(data)
   if errorAddUser != nil {
     log.Print(errorAddUser)
