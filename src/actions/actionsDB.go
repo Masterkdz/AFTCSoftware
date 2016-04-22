@@ -17,10 +17,10 @@ func AddUser(data modele.Formulaire) error {
 	if db == nil {
 		error := errors.New("db = nil ")
 		return error
-	}
-	stmt, _ := db.Prepare("INSERT INTO usagers(nom, prenom, Auteur_fiche, Date, NomTCCL, telephone_fixe, Portable, CirconstancesTrauma, ConditionsPriseEnchargeMedicale, ConditionsPriseEnChargeSociale, DemarchesAdministrativesJuridiquesEffectuees, ProblemesRecontres, AttentesAFTC, Observations) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")
+	}   
+	stmt, _ := db.Prepare("INSERT INTO usagers(Date, Nomcontact, Nomtc, Adresse, Tel, Auteurfiche, Lien, Circonstances, Priseenchargemedicale, Priseenchargesociale, Demarches, Problemes, Attentes, Observations) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")
 
-    res, _ := stmt.Exec(data.Nom, data.Prenom, data.AuteurFiche, data.Date, data.NomTCCL, data.Tel, data.Portable, data.CirconstancesTrauma, data.ConditionsPriseEnchargeMedicale, data.ConditionsPriseEnChargeSociale, data.DemarchesAdministrativesJuridiquesEffectuees, data.ProblemesRecontres, data.AttentesAFTC, data.Observations) //Remplacer les valeurs par les variables corresepondantes
+    res, _ := stmt.Exec(data.Date, data.Nomcontact, data.Nomtc, data.Adresse, data.Tel, data.Auteurfiche, data.Lien, data.Circonstances, data.Priseenchargemedicale, data.Priseenchargesociale, data.Demarches, data.Problemes, data.Attentes, data.Observations) //Remplacer les valeurs par les variables corresepondantes
 
     _, _ = res.LastInsertId()
 	db.Close()
