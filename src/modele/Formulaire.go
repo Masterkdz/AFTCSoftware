@@ -16,3 +16,12 @@ type Formulaire struct {
     Attentes	string
     Observations	string
 }
+
+type Adherent struct {
+    Nom string
+    Prenom string
+    Date string
+    Tel string
+}
+
+type Adherents []Adherent

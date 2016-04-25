@@ -2,6 +2,7 @@ package handlers
 
 import (
   "../utils"
+  "../modele"
   "html/template"
   "log"
   "net/http"
@@ -19,6 +20,20 @@ func ServeTemplate(w http.ResponseWriter, r *http.Request) {
   	log.Println(err)
   }
   tmpl.ExecuteTemplate(w, "index.html", nil)
+}
+
+func ServeUsersTemplate(w http.ResponseWriter, r *http.Request) {
+  header := w.Header()
+  utils.SetCors(&header)
+  log.Print("I ask users")
+  lp := path.Join("../web", "users.html")
+  var users modele.Adherents{}
+  users = actions.GetUsers(&users)
+  tmpl, err := template.ParseFiles(lp)
+  if err != nil {
+    log.Println(err)
+  }
+  tmpl.ExecuteTemplate(w, "users.html", users)
 }
 
 func ServeStyle(w http.ResponseWriter, r *http.Request) {

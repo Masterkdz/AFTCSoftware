@@ -57,4 +57,10 @@ var routes = Routes{
 		"/delete",
 		handlers.DeleteUser,
 	},
+		Route {
+		"ServeUsersTemplate",
+		"GET",
+		"/users.html",
+		handlers.ServeUsersTemplate,
+	},
 }

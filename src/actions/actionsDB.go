@@ -10,8 +10,8 @@ import (
 )
 
 func AddUser(data modele.Formulaire) error {
-	db, error := sql.Open("mysql", "Root@/dbAFTC.db3")
-    if error == nil {
+	db, error := sql.Open("mysql", "Root@/AFTC")
+    if error != nil {
     	log.Print(error)
     }
 	if db == nil {
@@ -20,37 +20,16 @@ func AddUser(data modele.Formulaire) error {
 	}   
 	stmt, _ := db.Prepare("INSERT INTO usagers(Date, Nomcontact, Nomtc, Adresse, Tel, Auteurfiche, Lien, Circonstances, Priseenchargemedicale, Priseenchargesociale, Demarches, Problemes, Attentes, Observations) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")
 
-    res, _ := stmt.Exec(data.Date, data.Nomcontact, data.Nomtc, data.Adresse, data.Tel, data.Auteurfiche, data.Lien, data.Circonstances, data.Priseenchargemedicale, data.Priseenchargesociale, data.Demarches, data.Problemes, data.Attentes, data.Observations) //Remplacer les valeurs par les variables corresepondantes
-
+    res, errExec := stmt.Exec(data.Date, data.Nomcontact, data.Nomtc, data.Adresse, data.Tel, data.Auteurfiche, data.Lien, data.Circonstances, data.Priseenchargemedicale, data.Priseenchargesociale, data.Demarches, data.Problemes, data.Attentes, data.Observations) //Remplacer les valeurs par les variables corresepondantes
+    if errExec != nil {
+    	log.Print(errExec)
+    }
     _, _ = res.LastInsertId()
 	db.Close()
 	return nil
 }
 
-/*func TestAddResult(db *sql.DB,) ([]string, error) {
-	var result []string
-	db, error := sql.Open("mysql", "Root@/dbAFTC.db3")
-    checkErr(error)
-	if db == nil {
-		error := errors.New("db = nil ")
-		return result, error
-	}
-	stmt, err := db.Prepare("INSERT INTO usagers(nom, prenom) VALUES(?,?)")
-    checkErr(err)
-
-    res, err := stmt.Exec("DEZORZI", "Kevin")
-    checkErr(err)
-
-    id, err := res.LastInsertId()
-    checkErr(err)
-	if errorQuery != nil {
-		return result, errorQuery
-	}
-	db.Close()
-	return result, nil
-}*/
-
-/*func TestDispResult(db *sql.DB,) ([]string, error) {
+func GetUsers(data *modele.Adherents) ([]string, error) {
 	var result []string
 	db, err := sql.Open("mysql", "Root@/dbAFTC.db3")
     checkErr(error)
@@ -76,7 +55,31 @@ func AddUser(data modele.Formulaire) error {
     
 	db.Close()
 	return result, nil
+}
+
+/*func TestAddResult(db *sql.DB,) ([]string, error) {
+	var result []string
+	db, error := sql.Open("mysql", "Root@/dbAFTC.db3")
+    checkErr(error)
+	if db == nil {
+		error := errors.New("db = nil ")
+		return result, error
+	}
+	stmt, err := db.Prepare("INSERT INTO usagers(nom, prenom) VALUES(?,?)")
+    checkErr(err)
+
+    res, err := stmt.Exec("DEZORZI", "Kevin")
+    checkErr(err)
+
+    id, err := res.LastInsertId()
+    checkErr(err)
+	if errorQuery != nil {
+		return result, errorQuery
+	}
+	db.Close()
+	return result, nil
 }*/
+
 
 
 /*func DisplayResult(db *sql.DB,) ([]string, error) {
